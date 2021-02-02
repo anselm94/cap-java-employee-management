@@ -1,0 +1,73 @@
+{
+	"welcomeFile": "/app/fiori.html",
+	"authenticationMethod": "route",
+	"routes": [
+	  {
+		"source": "^/app/(.*)$",
+		"cacheControl": "no-cache, no-store, must-revalidate",
+		"target": "$1", 
+		"localDir": "./",
+		"authenticationType": "xsuaa"
+	  },
+	  {
+		"source": "^/manage-team/webapp/(.*)$",
+		"localDir": "./",
+		"authenticationType": "xsuaa"
+	  },
+	  {
+		"source": "^/manage-employee/webapp/(.*)$",
+		"localDir": "./",
+		"authenticationType": "xsuaa"
+	  },
+	  {
+		"source": "^/manage-entity/webapp/(.*)$",
+		"localDir": "./",
+		"authenticationType": "xsuaa"
+	  },
+	  {
+		"source": "^/manage-application/webapp/(.*)$",
+		"localDir": "./",
+		"authenticationType": "xsuaa"
+	  },
+	  {
+		"source": "^/my-profile/webapp/(.*)$",
+		"localDir": "./",
+		"authenticationType": "xsuaa"
+	  },
+	  {
+		"source": "^/api/manage-team/(.*)",
+		"authenticationType": "xsuaa",
+		"destination": "backend"
+	  },
+	  {
+		"source": "^/api/manage-employee/(.*)",
+		"authenticationType": "xsuaa",
+		"destination": "backend"
+	  },
+	  {
+		"source": "^/api/manage-entity/(.*)",
+		"authenticationType": "xsuaa",
+		"destination": "backend"
+	  },
+	  {
+		"source": "^/api/manage-application/(.*)",
+		"authenticationType": "xsuaa",
+		"destination": "backend"
+	  },
+	  {
+		"source": "^/api/my-profile/(.*)",
+		"authenticationType": "xsuaa",
+		"destination": "backend"
+	  },
+	  {
+		"source": "^/api/(.*)$",
+		"authenticationType": "none",
+		"destination": "backend"
+	  },
+	  {
+		"source": "^/feature-flag/(.*)$",
+		"authenticationType": "xsuaa",
+		"destination": "backend"
+	  }
+	]
+}

@@ -1,0 +1,21 @@
+{
+	"xsappname": "employee-portal-public",
+	"tenant-mode": "dedicated",
+	"scopes": [
+	  {
+		"name": "$XSAPPNAME.manager",
+		"description": "Manager for Employee Management Portal"
+	  }
+	],
+	"attributes": [],
+	"role-templates": [
+	  {
+		"name": "manager",
+		"description": "Manager for Employee Management Portal",
+		"scope-references": [
+		  "$XSAPPNAME.manager"
+		],
+		"attribute-references": []
+	  }
+	]
+  }

@@ -1,0 +1,11 @@
+applications:
+- name: employee-management-sidecar
+  disk_quota: 512M
+  instances: 1
+  memory: 256M
+  routes:
+  - route: trial-dev-employee-management-sidecar.cfapps.sap.hana.ondemand.com
+  services:
+  - employee-management-uaa
+  - employee-management-service-manager
+  stack: cflinuxfs3

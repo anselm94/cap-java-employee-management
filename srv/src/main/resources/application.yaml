@@ -1,0 +1,31 @@
+---
+spring:
+  resources:
+    static-locations: "file:./app"
+cds:
+  odata-v4:
+    endpoint:
+      path: "/api"
+  security:
+    mock:
+      users:
+        - name: manager
+          password: manager
+          roles:
+          - manager
+        - name: john.doe@example.com
+          password: john.doe
+
+---
+spring:
+  profiles: default
+  datasource:
+    url: "jdbc:sqlite:file::memory:?cache=shared"
+    driver-class-name: org.sqlite.JDBC
+    initialization-mode: always
+    hikari:
+      maximum-pool-size: 1
+
+---
+spring:
+  profiles: cloud

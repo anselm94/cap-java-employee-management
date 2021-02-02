@@ -1,0 +1,22 @@
+applications:
+- name: employee-management-srv
+  buildpacks:
+  - https://github.com/cloudfoundry/java-buildpack.git # required for debugging
+  disk_quota: 256M
+  path: target/employee-management-exec.jar
+  env:
+    CDS_MULTITENANCY_APPUI_TENANTSEPARATOR: '-'
+    CDS_MULTITENANCY_APPUI_URL: https://trial-dev-employee-management-approuter.cfapps.sap.hana.ondemand.com
+    CDS_MULTITENANCY_SIDECAR_URL: https://trial-dev-employee-management-sidecar.cfapps.sap.hana.ondemand.com
+    SPRING_PROFILES_ACTIVE: cloud
+    TARGET_RUNTIME: tomcat
+    JBP_CONFIG_DEBUG: '{enabled: true}' # for debugging
+  instances: 1
+  memory: 1G
+  routes:
+  - route: trial-dev-employee-management-srv.cfapps.sap.hana.ondemand.com
+  services:
+  - employee-management-service-manager
+  - employee-management-uaa
+  - employee-management-saas-registry
+  stack: cflinuxfs3

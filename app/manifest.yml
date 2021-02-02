@@ -1,0 +1,19 @@
+applications:
+- name: employee-management-approuter
+  disk_quota: 512M
+  env:
+    TENANT_HOST_PATTERN: ^(.*)-trial-dev-employee-management-approuter.cfapps.sap.hana.ondemand.com
+    destinations: |-
+      [ {
+        "forwardAuthToken" : true,
+        "name" : "backend",
+        "strictSSL" : true,
+        "url" : "https://trial-dev-employee-management-srv.cfapps.sap.hana.ondemand.com"
+      } ]
+  instances: 1
+  memory: 256M
+  routes:
+  - route: trial-dev-employee-management-approuter.cfapps.sap.hana.ondemand.com
+  services:
+  - employee-management-uaa
+  stack: cflinuxfs3

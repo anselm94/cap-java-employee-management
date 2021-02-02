@@ -1,0 +1,27 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Application<employee-management>",
+            "request": "launch",
+            "mainClass": "com.sample.Application",
+            "projectName": "employee-management"
+        },
+        {
+            "address": "127.0.0.1",
+            "localRoot": "${workspaceFolder}/mtx-sidecar",
+            "name": "Attach to Remote",
+            "port": 9229,
+            "remoteRoot": "/home/vcap/app",
+            "request": "attach",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "pwa-node"
+        }
+    ]
+}

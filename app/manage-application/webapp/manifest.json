@@ -1,0 +1,105 @@
+{
+    "_version": "1.8.0",
+    "sap.app": {
+        "id": "application",
+        "type": "application",
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "dataSources": {
+            "ManageApplicationService": {
+                "uri": "/api/manage-application/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "4.0"
+                }
+            }
+        },
+        "-sourceTemplate": {
+            "id": "ui5template.basicSAPUI5ApplicationProject",
+            "-id": "ui5template.smartTemplate",
+            "-version": "1.40.12"
+        }
+    },
+    "sap.ui5": {
+        "dependencies": {
+            "libs": {
+                "sap.fe.templates": {}
+            }
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "": {
+                "dataSource": "ManageApplicationService",
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect" : true,
+                    "earlyRequests": true,
+                    "groupProperties": {
+                        "default": {
+                            "submit": "Auto"
+                        }
+                    }
+                }
+            }
+        },
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "ApplicationsList",
+                    "target": "ApplicationsList"
+                },
+                {
+                    "pattern": "Applications({key}):?query:",
+                    "name": "ApplicationDetails",
+                    "target": "ApplicationDetails"
+                }
+            ],
+            "targets": {
+                "ApplicationsList": {
+                    "type": "Component",
+                    "id": "ApplicationsList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings" : {
+                            "entitySet" : "Applications",
+                            "navigation" : {
+                                "Applications" : {
+                                    "detail" : {
+                                        "route" : "ApplicationDetails"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "ApplicationDetails": {
+                    "type": "Component",
+                    "id": "TeamDetails",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings" : {
+                            "entitySet" : "Applications"
+                        }
+                    }
+                }
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "fullWidth": false
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "transactional"
+    }
+}

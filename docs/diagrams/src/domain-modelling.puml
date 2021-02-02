@@ -1,0 +1,35 @@
+@startuml Domain Modelling
+left to right direction
+
+class Team {
+    name
+    description
+    location
+}
+
+class Employee {
+    name
+    email
+    date_of_birth
+}
+
+class Member {
+    position
+}
+
+class Skill {
+    name
+}
+
+class Application {
+    status
+    resume
+}
+
+Team "1..*" *-- "1..*" Member : contains >
+Member "1" -- "0..1" Employee : appointed <
+Employee "1..*" *-- "0..*" Skill : has >
+
+Application "1" -- "1" Employee : applied <
+Application "1" -- "1" Team : for >
+@enduml

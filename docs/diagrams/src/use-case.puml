@@ -1,0 +1,29 @@
+@startuml Use Case
+left to right direction
+skinparam packageStyle rectangle
+actor manager
+actor employee
+rectangle "Employee Portal" {
+    package "Manage Teams Service" {
+        manager --> (create/delete/update teams)
+        manager --> (create/delete positions in teams)
+        manager --> (assign/unassign employees to positions)
+    }
+
+    package "Manage Employees Service" {
+        manager --> (create/delete/update employees)
+        manager --> (assign/unassign skills to employees)
+    }
+
+    package "Manage Applications Service" {
+        manager --> (accept/reject applications)
+        manager --> (create applications on behalf of employees)
+        employee --> (apply for jobs in teams)
+    }
+
+    package "My Profile Service" {
+        employee --> (update employee information)
+        employee --> (assign/unassign skills)
+    }
+}
+@enduml
