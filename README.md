@@ -1,19 +1,33 @@
 # Employee Management
 
-A sample Employee Management Portal based on CAP framework.
+A sample Employee Management Portal based on SAP's [CAP framework](https://cap.cloud.sap/docs/about/). 
 
-This project supports both *single-tenancy* as well as *multi-tenancy* in SAP Cloud Platform.
+This project supports *single-tenancy* (on local via *SQLite* or on cloud via *SAP HANA*) as well as *multi-tenancy* (only on Cloud in SAP HANA via [CAP's multitenancy support](https://cap.cloud.sap/docs/java/multitenancy)) in [SAP Cloud Platform](https://www.sap.com/products/business-technology-platform.html).
 
-![Domain Modelling](./docs/diagrams/out/domain-modelling.png)
+![Demo](./docs/diagrams/out/demo.gif)
+
+*Demo of Employee Management - CAP application. Sample data shown are fictitious*
+
+## Documentation
+
+### 1. Use-cases
+
+There are 2 types of users - `manager` & `employee`, with set permissions to do particular actions
 
 ![Use Case Diagram](./docs/diagrams/out/use-case.png)
 
-| Service                                                              | Allowed Roles                    | Description                                                                                                                                                                                                              |
-|----------------------------------------------------------------------|----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [`manage-team-service`](./srv/manage-team-service.cds)               | `manager`                        | Create, Update & Delete teams. Also create new positions (members) in a Team and assign Employees                                                                                                                        |
-| [`manage-employee-service`](./srv/manage-employee-service.cds)       | `manager`                        | Create, Update & Delete Employees. Also create, update, delete Skills which Employees may have                                                                                                                           |
+### 2. Domain Modelling
+
+![Domain Modelling](./docs/diagrams/out/domain-modelling.png)
+
+### 3. Services
+
+| Service | Allowed Roles | Description |
+|---------|---------------|-------------|
+| [`manage-team-service`](./srv/manage-team-service.cds) | `manager` | Create, Update & Delete teams. Also create new positions (members) in a Team and assign Employees |
+| [`manage-employee-service`](./srv/manage-employee-service.cds)| `manager` | Create, Update & Delete Employees. Also create, update, delete Skills which Employees may have |
 | [`manage-application-service`](./srv/manage-application-service.cds) | `manager` & `authenticated-user` | For Managers - Create, Update & Delete applications as well as Accept/Reject applications created by Employees For Employees - Create (Apply for a Job) applications for various Teams and add in a Resume as plain-text |
-| [`my-profile-service`](./srv/my-profile-service.cds)                 | `authenticated-user`             | Personal Employee details, if the `authenticated-user` has one and optionally add/delete Skills and update DOB                                                                                                           |
+| [`my-profile-service`](./srv/my-profile-service.cds) | `authenticated-user` | Personal Employee details, if the `authenticated-user` has one and optionally add/delete Skills and update DOB |
 
 ## Build & Run
 
@@ -33,13 +47,23 @@ This project supports both *single-tenancy* as well as *multi-tenancy* in SAP Cl
 
 ### Run locally
 
-1. Run the Spring Boot application. The `-P cdsdk-global` activates the profile to skip the installation of CDS SDK for every build.
+1. Run the Spring Boot application
 
-        mvn spring-boot:run -P cdsdk-global
+    a. Use 'Run' in VS-Code and select 'Debug (Launch)-Application<employee-management>' task to launch the application (Recommended)
+    
+    *or* 
 
-2. Now, the oData API is available at https://localhost:8080
+    b. Execute the command in a terminal. The `-P cdsdk-global` activates the profile to skip the installation of CDS SDK for every build.
+    
+    ```sh
+    mvn spring-boot:run -P cdsdk-global
+    ```
 
 > _Note_: If the compilation fails with `Executable npx not found` error, make sure to delete the `node_modules/` folder from the root of the project.
+
+2. The oData API is available at https://localhost:8080
+
+3. The UI is available at https://localhost:8080/fiori.html
 
 ### Run on Cloud
 
@@ -56,6 +80,8 @@ This project supports both *single-tenancy* as well as *multi-tenancy* in SAP Cl
 * Cloud Foundry CLI logged into the SAP Cloud Foundry account ([Step 1 of tutorial](https://developers.sap.com/tutorials/s4sdk-cloud-foundry-sample-application.html#34579dba-f2c5-48ad-b026-04c40dc269d1))
 
 ##### Build & Deploy in the Cloud Foundry
+
+> The _Cloud MTA Builder Tool_ doesn't support custom `mta.yaml` filenames [SAP/cloud-mta-build-tool#709](https://github.com/SAP/cloud-mta-build-tool/issues/709). For multi-tenant deployments, rename `mta-multitenant.yaml` to `mta.yaml` & `cds-security-multitenant.json` to `cds-security.json`
 
 1. Build the MTAR package. Once built, you can find a package named `employee-management_x.y.z.mtar` under *mta_archives/* folder
 
@@ -80,8 +106,6 @@ Once created, you can push the changes to your subscribed tenant and activate it
     cds activate --to https://<DEPLOYED_SUB_ACCOUNT>-<DEPLOYED_SPACE>-employee-management-sidecar.cfapps.sap.hana.ondemand.com/ -s <SUBSCRIBED_SUB_ACCOUNT>
 
 More details on SaaS Extensions [here](https://cap.cloud.sap/docs/guides/extensibility).
-
-> See [Dynamic Entity & Service Extension Concept](./docs/dynamic-extensions-concept.md) document for more details on dynamic extensions concept
 
 ## License
 

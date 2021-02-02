@@ -1,0 +1,119 @@
+## Generated mta.yaml based on template version 0.4.0
+## appName = employee-management
+## language=java; multiTenant=false
+## approuter=
+_schema-version: "3.1"
+ID: employee-management
+version: 1.0.0
+description: "Employee Management Portal"
+parameters:
+  enable-parallel-deployments: true
+
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm install --production
+        - npx -p @sap/cds-dk cds build --production
+
+modules:
+  # --------------------- SERVER MODULE ------------------------
+  - name: employee-management-srv
+    # ------------------------------------------------------------
+    type: java
+    path: srv
+    parameters:
+      memory: 1024M
+      disk-quota: 256M
+      buildpack: sap_java_buildpack
+    properties:
+      SPRING_PROFILES_ACTIVE: cloud
+      CDS_MULTITENANCY_APPUI_TENANTSEPARATOR: "-"
+    build-parameters:
+      builder: custom
+      commands: [mvn clean package ]
+      build-result: "target/*.[wj]ar"
+    provides:
+      - name: srv-url
+        properties:
+          url: "${default-url}"
+    requires:
+      - name: employee-management-service-manager
+      - name: employee-management-uaa
+      - name: employee-management-saas-registry
+      - name: sidecar
+        properties:
+          CDS_MULTITENANCY_SIDECAR_URL: ~{url}
+      - name: app-url
+        properties:
+          CDS_MULTITENANCY_APPUI_URL: ~{url}
+
+# --------------------- SIDECAR MODULE -----------------------
+  - name: employee-management-sidecar
+# ------------------------------------------------------------
+    type: nodejs
+    path: mtx-sidecar
+    parameters:
+      memory: 256M
+      disk-quota: 512M
+    requires:
+      - name: employee-management-service-manager
+      - name: employee-management-uaa
+    provides:
+      - name: sidecar
+        properties:
+          url: ${default-url}
+
+# --------------------- APPROUTER MODULE ---------------------
+  - name: employee-management-approuter
+# ------------------------------------------------------------
+    type: nodejs
+    path: app
+    parameters:
+      memory: 256M
+      disk-quota: 512M
+    properties:
+      TENANT_HOST_PATTERN: ^(.*)-${default-uri}
+    requires:
+    - name: srv-url
+      group: destinations
+      properties:
+        name: backend
+        url: ~{url}
+        forwardAuthToken: true
+        strictSSL: true
+    - name: employee-management-uaa
+    provides:
+      - name: app-url
+        properties:
+          url: '${default-url}'
+
+# --------------------- RESOURCES ---------------------
+resources:
+  # -----------------------------------------------------
+  - name: employee-management-uaa
+    type: com.sap.xs.uaa
+    parameters:
+      service: xsuaa
+      service-plan: broker
+      path: ./cds-security.json
+      config: # override xsappname in cds-security.json, xsappname needs to be unique
+        xsappname: employee-management-${org}-${space}
+  - name: employee-management-service-manager
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: service-manager
+      service-plan: container
+  - name: employee-management-saas-registry
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: saas-registry
+      service-plan: application
+      config:
+        appName: employee-management-${org}-${space} # this is the text on the tile
+        xsappname: employee-management-${org}-${space} # this is the value from xsuaa.parameters.config.xsappname
+        appUrls:
+          getDependencies: ~{srv-url/url}/mt/v1.0/subscriptions/dependencies
+          onSubscription: ~{srv-url/url}/mt/v1.0/subscriptions/tenants/{tenantId}
+    requires:
+      - name: srv-url

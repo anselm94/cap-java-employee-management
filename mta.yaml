@@ -19,78 +19,63 @@ build-parameters:
 modules:
   # --------------------- SERVER MODULE ------------------------
   - name: employee-management-srv
-    # ------------------------------------------------------------
+  # ------------------------------------------------------------
     type: java
     path: srv
-    parameters:
-      memory: 1024M
-      disk-quota: 256M
-      buildpack: sap_java_buildpack
-    properties:
-      SPRING_PROFILES_ACTIVE: cloud
-      CDS_MULTITENANCY_APPUI_TENANTSEPARATOR: "-"
     build-parameters:
       builder: custom
-      commands: [mvn clean package ]
+      commands: [mvn clean package]
       build-result: "target/*.[wj]ar"
-    provides:
-      - name: srv-url
-        properties:
-          url: "${default-url}"
     requires:
-      - name: employee-management-service-manager
+      # Resources extracted from CAP configuration
       - name: employee-management-uaa
-      - name: employee-management-saas-registry
-      - name: sidecar
+      - name: employee-management-db
         properties:
-          CDS_MULTITENANCY_SIDECAR_URL: ~{url}
-      - name: app-url
-        properties:
-          CDS_MULTITENANCY_APPUI_URL: ~{url}
-
-# --------------------- SIDECAR MODULE -----------------------
-  - name: employee-management-sidecar
-# ------------------------------------------------------------
-    type: nodejs
-    path: mtx-sidecar
-    parameters:
-      memory: 256M
-      disk-quota: 512M
-    requires:
-      - name: employee-management-service-manager
-      - name: employee-management-uaa
+          SPRING_PROFILES_ACTIVE: cloud
     provides:
-      - name: sidecar
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
         properties:
           url: ${default-url}
 
-# --------------------- APPROUTER MODULE ---------------------
+  # -------------------- DB MODULE ------------------------
+  - name: employee-management-db-deployer
+  # ------------------------------------------------------------
+    type: hdb
+    path: db
+    parameters:
+      buildpack: nodejs_buildpack
+      no-route: true
+      no-start: true
+      tasks:    # execute hdi deployer on app creation/update
+      - name: hdi-deploy
+        command: npm run start
+    requires:
+      # 'hana' and 'xsuaa' resources extracted from CAP configuration
+      - name: employee-management-db
+
+  # --------------------- APPROUTER MODULE ---------------------
   - name: employee-management-approuter
-# ------------------------------------------------------------
+  # ------------------------------------------------------------
     type: nodejs
     path: app
     parameters:
       memory: 256M
       disk-quota: 512M
-    properties:
-      TENANT_HOST_PATTERN: ^(.*)-${default-uri}
     requires:
-    - name: srv-url
+    - name: employee-management-uaa
+    - name: srv-api
       group: destinations
       properties:
         name: backend
         url: ~{url}
         forwardAuthToken: true
         strictSSL: true
-    - name: employee-management-uaa
     provides:
       - name: app-url
         properties:
           url: '${default-url}'
 
-# --------------------- RESOURCES ---------------------
 resources:
-  # -----------------------------------------------------
   - name: employee-management-uaa
     type: com.sap.xs.uaa
     parameters:
@@ -99,21 +84,10 @@ resources:
       path: ./cds-security.json
       config: # override xsappname in cds-security.json, xsappname needs to be unique
         xsappname: employee-management-${org}-${space}
-  - name: employee-management-service-manager
-    type: org.cloudfoundry.managed-service
+  - name: employee-management-db
+    type: com.sap.xs.hdi-container
     parameters:
-      service: service-manager
-      service-plan: container
-  - name: employee-management-saas-registry
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: saas-registry
-      service-plan: application
-      config:
-        appName: employee-management-${org}-${space} # this is the text on the tile
-        xsappname: employee-management-${org}-${space} # this is the value from xsuaa.parameters.config.xsappname
-        appUrls:
-          getDependencies: ~{srv-url/url}/mt/v1.0/subscriptions/dependencies
-          onSubscription: ~{srv-url/url}/mt/v1.0/subscriptions/tenants/{tenantId}
-    requires:
-      - name: srv-url
+      service: hana
+      service-plan: hdi-shared
+    properties:
+      hdi-service-name: ${service-name}

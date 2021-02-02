@@ -11,10 +11,14 @@ cds:
       users:
         - name: manager
           password: manager
+          additional:
+            email: john.doe@example.com
           roles:
           - manager
         - name: john.doe@example.com
           password: john.doe
+          additional:
+            email: john.doe@example.com
 
 ---
 spring:
