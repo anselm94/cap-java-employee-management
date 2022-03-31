@@ -1,63 +1,168 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="en" class="sapUShellFullHeight">
+    <head>
+		<title>Employee Portal</title>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <link rel="stylesheet" href="https://sapui5.hana.ondemand.com/1.99.0/resources/sap/ui/core/themes/sap_horizon/library.css" id="sap-ui-theme-sap.ui.core"/>
+        <link rel="stylesheet" href="https://sapui5.hana.ondemand.com/1.99.0/resources/sap/m/themes/sap_horizon/library.css" id="sap-ui-theme-sap.m"/>
+        <!-- Runtime Agent platform-independent default settings -->
+        <meta name="sap.ushellConfig.crossPlatformDefaults" content='{
+            "ushell" : {
+                "home": {
+                    "featuredGroup": {
+                        "enable": true
+                    }
+                }
+            },
+            "renderers": {
+                "fiori2": {
+                    "componentData": {
+                        "config": {
+                            "sizeBehaviorConfigurable": true,
+                            "enableSearch": true
+                        }
+                    }
+                }
+            },
+            "services": {
+                "PluginManager": {
+                    "config": {
+                        "loadPluginsFromSite": true
+                    }
+                },
+                "Container": {
+                    "adapter": {
+                        "config": {
+                            "systemProperties": {
+                            },
+                            "userProfile": {
+                                "metadata": {
+                                    "editablePropterties": [
+                                        "accessibility",
+                                        "contentDensity",
+                                        "theme"
+                                    ],
+                                    "ranges": {
+                                        "theme": {
+                                            "sap_belize": {
+                                                "displayName": "SAP Belize",
+                                                "themeRoot": ""
+                                            },
+                                            "sap_belize_plus":  {
+                                                "displayName": "SAP Belize Plus",
+                                                "themeRoot": ""
+                                            },
+                                            "sap_fiori_3_hcb": {
+                                                "displayName": "SAP Quartz HCB",
+                                                "themeRoot": ""
+                                            },
+                                            "sap_fiori_3_hcw": {
+                                                "displayName": "SAP Quartz HCW",
+                                                "themeRoot": ""
+                                            },
+                                            "sap_fiori_3": {
+                                                "displayName": "SAP Quartz",
+                                                "themeRoot": ""
+                                            },
+                                            "sap_horizon": {
+                                                "displayName": "SAP Horizon",
+                                                "themeRoot": ""
+                                            }
+                                        }
+                                    }
+                                },
+                                "defaults": {
+                                    "email": "john.doe@sap.com",
+                                    "firstName": "John",
+                                    "lastName": "Doe",
+                                    "fullName": "John Doe",
+                                    "id": "DOEJ",
+                                    "language": "EN",
+                                    "languageBcp47": "en",
+                                    "sapDateFormat": "1",
+                                    "tislcal": [],
+                                    "numberFormat": "",
+                                    "rtl": false,
+                                    "sapTimeFormat": "0",
+                                    "timeZone": "CET"
+                                }
+                            },
+                            "userProfilePersonalization": {
+                                "sapDateFormat": "1",
+                                "theme": "sap_horizon",
+                                "sapTimeFormat": "0",
+                                "timeZone": "UTC",
+                                "contentDensity": "cozy"
+                            }
+                        }
+                    }
+                },
+                "CommonDataModel": {
+                    "adapter": {
+                        "config": {
+                            "ignoreSiteDataPersonalization": true,
+                            "siteDataUrl": "./CommonDataModel.json",
+                            "allowSiteSourceFromURLParameter": true
+                        }
+                    }
+                },
+                "LaunchPage": {
+                    "adapter": {
+                        "module": "sap.ushell.adapters.cdm.v3.LaunchPageAdapter"
+                    }
+                },
+                "Search": {
+                    "adapter": {
+                        "module": "sap.ushell.adapters.local.SearchAdapter"
+                    }
+                },
+                "Ui5ComponentLoader": {
+                    "config": {
+                        "amendedLoading": true
+                    },
+                    "adapter": {
+                        "module": "sap.ushell.adapters.local.Ui5ComponentLoaderAdapter"
+                    }
+                }
+            }
+        }' />
 
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Employee Portal</title>
+        <!-- Runtime Agent platform-specific default settings -->
+        <meta name="sap.ushellConfig.platformSpecificDefaults" content='{
+            "services": {
+                "Container": {
+                    "adapter": {
+                        "config": {
+                            "systemProperties": {
+                                "logoutUrl": "/sap/public/bc/icf/logoff",
+                                "productName": "Product Name for CDM",
+                                "productVersion": "Product Version for CDM",
+                                "systemName": "System Name for CDM",
+                                "systemRole": "System Role for CDM",
+                                "tenantRole": "Tenant Role for CDM"
 
-	<script>
-		window["sap-ushell-config"] = {
-			defaultRenderer: "fiori2",
-			applications: {
-				"manage-teams": {
-					title: "Team Management",
-					description: "Manage Teams and team members",
-					additionalInformation: "SAPUI5.Component=team",
-					applicationType : "URL",
-					url: "/manage-team/webapp",
-					navigationMode: "embedded"
-				},
-				"manage-employees": {
-					title: "Employee Management",
-					description: "Manage Employees",
-					additionalInformation: "SAPUI5.Component=employee",
-					applicationType : "URL",
-					url: "/manage-employee/webapp",
-					navigationMode: "embedded"
-				},
-				"manage-applications": {
-					title: "Application Management",
-					description: "Manage Job Applications",
-					additionalInformation: "SAPUI5.Component=application",
-					applicationType : "URL",
-					url: "/manage-application/webapp",
-					navigationMode: "embedded"
-				},
-				"my-profile": {
-					title: "My Profile",
-					description: "Manage My Profile",
-					additionalInformation: "SAPUI5.Component=profile",
-					applicationType : "URL",
-					url: "/my-profile/webapp",
-					navigationMode: "embedded"
-				}
-			}
-		};
-	</script>
-
-	<script src="https://sapui5.hana.ondemand.com/test-resources/sap/ushell/bootstrap/sandbox.js"></script>
-	<script src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
-    	data-sap-ui-libs="sap.m, sap.ushell, sap.collaboration, sap.ui.layout"
-    	data-sap-ui-compatVersion="edge"
-    	data-sap-ui-theme="sap_horizon"
-    	data-sap-ui-frameOptions="allow"
-	></script>
-	<script>
-		sap.ui.getCore().attachInit(()=> sap.ushell.Container.createRenderer().placeAt("content"))
-	</script>
-
-</head>
-<body class="sapUiBody" id="content"></body>
+                            }
+                        }
+                    }
+                },
+                "SupportTicket": {
+                    "config": {
+                        "enabled": true
+                    },
+                    "adapter": {
+                        "module": "sap.ushell.adapters.local.SupportTicketAdapter"
+                    }
+                }
+            }
+        }' />
+        <script id="sap-ui-bootstrap" src="https://sapui5.hana.ondemand.com/resources/sap/ushell/bootstrap/cdm.js"></script>
+    </head>
+    <body class="sapUiBody">
+        <div id="canvas">
+            <div class="sapMShellBG sapUiGlobalBackgroundImage">
+            </div>
+        </div>
+    </body>
 </html>

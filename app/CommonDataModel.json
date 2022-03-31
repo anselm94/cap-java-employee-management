@@ -1,0 +1,392 @@
+{
+    "_version": "3.0.0",
+    "site": {
+        "identification": {
+            "id": "c9dcc1f3-dec0-4db4-91d3-639bf38d91ce",
+            "namespace": "",
+            "title": "Employee Portal",
+            "description": "FLP Employee Portal"
+        },
+        "payload": {
+            "homeApp": {
+                "semanticObject": "Shell",
+                "action": "home"
+            },
+            "config": {
+                "ushellConfig": {
+                    "renderers": {
+                        "fiori2": {
+                            "componentData": {
+                                "config": {
+                                    "enableSearch": true
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "groupsOrder": [
+                "overview",
+                "apps"
+            ]
+        }
+    },
+    "catalogs": {
+        "apps": {
+            "identification": {
+                "id": "apps",
+                "title": "Applications"
+            },
+            "payload": {
+                "viz": [
+                    "team",
+                    "employee",
+                    "application",
+                    "profile"
+                ]
+            }
+        }
+    },
+    "applications": {
+        "team": {
+            "sap.app": {
+                "id": "team",
+                "title": "Team Management",
+                "subTitle": "Manage teams and team members",
+                "ach": "",
+                "applicationVersion": {
+                    "version": "1.0.0"
+                },
+                "crossNavigation": {
+                    "inbounds": {
+                        "target": {
+                            "semanticObject": "manage",
+                            "action": "teams",
+                            "signature": {
+                                "parameters": {},
+                                "additionalParameters": "allowed"
+                            }
+                        }
+                    }
+                }
+            },
+            "sap.flp": {
+                "type": "application"
+            },
+            "sap.ui": {
+                "technology": "UI5",
+                "icons": {
+                    "icon": "sap-icon://collaborate"
+                },
+                "deviceTypes": {
+                    "desktop": true,
+                    "tablet": true,
+                    "phone": true
+                }
+            },
+            "sap.ui5": {
+                "componentName": "team"
+            },
+            "sap.platform.runtime": {
+                "componentProperties": {
+                    "url": "/manage-team/webapp"
+                }
+            }
+        },
+        "employee": {
+            "sap.app": {
+                "id": "employee",
+                "title": "Employee Management",
+                "subTitle": "Manage employees",
+                "ach": "",
+                "applicationVersion": {
+                    "version": "1.0.0"
+                },
+                "crossNavigation": {
+                    "inbounds": {
+                        "target": {
+                            "semanticObject": "manage",
+                            "action": "employees",
+                            "signature": {
+                                "parameters": {},
+                                "additionalParameters": "allowed"
+                            }
+                        }
+                    }
+                }
+            },
+            "sap.flp": {
+                "type": "application"
+            },
+            "sap.ui": {
+                "technology": "UI5",
+                "icons": {
+                    "icon": "sap-icon://employee"
+                },
+                "deviceTypes": {
+                    "desktop": true,
+                    "tablet": true,
+                    "phone": true
+                }
+            },
+            "sap.ui5": {
+                "componentName": "employee"
+            },
+            "sap.platform.runtime": {
+                "componentProperties": {
+                    "url": "/manage-employee/webapp"
+                }
+            }
+        },
+        "application": {
+            "sap.app": {
+                "id": "application",
+                "title": "Application Management",
+                "subTitle": "Manage Job Applications",
+                "ach": "",
+                "applicationVersion": {
+                    "version": "1.0.0"
+                },
+                "crossNavigation": {
+                    "inbounds": {
+                        "target": {
+                            "semanticObject": "manage",
+                            "action": "applications",
+                            "signature": {
+                                "parameters": {},
+                                "additionalParameters": "allowed"
+                            }
+                        }
+                    }
+                }
+            },
+            "sap.flp": {
+                "type": "application"
+            },
+            "sap.ui": {
+                "technology": "UI5",
+                "icons": {
+                    "icon": "sap-icon://work-history"
+                },
+                "deviceTypes": {
+                    "desktop": true,
+                    "tablet": true,
+                    "phone": true
+                }
+            },
+            "sap.ui5": {
+                "componentName": "application"
+            },
+            "sap.platform.runtime": {
+                "componentProperties": {
+                    "url": "/manage-application/webapp"
+                }
+            }
+        },
+        "profile": {
+            "sap.app": {
+                "id": "profile",
+                "title": "My Profile",
+                "subTitle": "Manage my profile",
+                "ach": "",
+                "applicationVersion": {
+                    "version": "1.0.0"
+                },
+                "crossNavigation": {
+                    "inbounds": {
+                        "target": {
+                            "semanticObject": "my",
+                            "action": "profile",
+                            "signature": {
+                                "parameters": {},
+                                "additionalParameters": "allowed"
+                            }
+                        }
+                    }
+                }
+            },
+            "sap.flp": {
+                "type": "application"
+            },
+            "sap.ui": {
+                "technology": "UI5",
+                "icons": {
+                    "icon": "sap-icon://business-card"
+                },
+                "deviceTypes": {
+                    "desktop": true,
+                    "tablet": true,
+                    "phone": true
+                }
+            },
+            "sap.ui5": {
+                "componentName": "profile"
+            },
+            "sap.platform.runtime": {
+                "componentProperties": {
+                    "url": "/my-profile/webapp"
+                }
+            }
+        }
+    },
+    "groups": {
+        "overview": {
+            "identification": {
+                "id": "overview",
+                "namespace": "",
+                "title": "Overview"
+            },
+            "payload": {
+                "tiles": [
+                    {
+                        "id": "card4",
+                        "vizId": "TeamCard"
+                    }
+                ],
+                "links": []
+            }
+        },
+        "apps": {
+            "identification": {
+                "id": "apps",
+                "namespace": "",
+                "title": "Applications"
+            },
+            "payload": {
+                "tiles": [
+                    {
+                        "id": "team",
+                        "appId": "team",
+                        "vizId": "team"
+                    },
+                    {
+                        "id": "employee",
+                        "appId": "employee",
+                        "vizId": "employee"
+                    },
+                    {
+                        "id": "application",
+                        "appId": "application",
+                        "vizId": "application"
+                    },
+                    {
+                        "id": "profile",
+                        "appId": "profile",
+                        "vizId": "profile"
+                    }
+                ],
+                "links": []
+            }
+        }
+    },
+    "systemAliases": {},
+    "visualizations": {
+        "team": {
+            "vizType": "sap.ushell.DynamicAppLauncher",
+            "businessApp": "team",
+            "vizConfig": {
+                "sap.flp": {
+                    "indicatorDataSource": {
+                        "path": "/api/manage-team/Teams?$count=true&$top=0",
+                        "refresh": 10
+                    },
+                    "target": {
+                        "appId": "team",
+                        "inboundId": "target"
+                    }
+                }
+            }
+        },
+        "employee": {
+            "vizType": "sap.ushell.StaticAppLauncher",
+            "businessApp": "employee",
+            "vizConfig": {
+                "sap.flp": {
+                    "target": {
+                        "appId": "employee",
+                        "inboundId": "target"
+                    }
+                }
+            }
+        },
+        "application": {
+            "vizType": "sap.ushell.StaticAppLauncher",
+            "businessApp": "application",
+            "vizConfig": {
+                "sap.flp": {
+                    "target": {
+                        "appId": "application",
+                        "inboundId": "target"
+                    }
+                }
+            }
+        },
+        "profile": {
+            "vizType": "sap.ushell.StaticAppLauncher",
+            "businessApp": "profile",
+            "vizConfig": {
+                "sap.flp": {
+                    "target": {
+                        "appId": "profile",
+                        "inboundId": "target"
+                    }
+                }
+            }
+        },
+        "TeamCard": {
+            "vizType": "sap.ushell.Card",
+            "businessApp": "team",
+            "target": {
+                "appId": "team",
+                "inboundId": "manage-team",
+                "parameters": {}
+            },
+            "vizConfig": {
+                "_version": "1.8.0",
+                "sap.flp": {
+                    "tileSize": "1x2",
+                    "columns": "4",
+                    "rows": "5"
+                },
+                "sap.app": {
+                    "id": "TeamCard",
+                    "type": "card",
+                    "applicationVersion": {
+                        "version": "1.0.0"
+                    }
+                },
+                "sap.card": {
+                    "type": "Table",
+                    "header": {
+                        "title": "Teams",
+                        "subTitle": "Team information",
+                        "icon": {
+                            "src": "sap-icon://employee"
+                        }
+                    },
+                    "content": {
+                        "data": {
+                            "request": {
+                                "url": "/api/manage-team/Teams?$count=true"
+                            },
+                            "path": "/value"
+                        },
+                        "row": {
+                            "columns": [
+                                {
+                                    "title": "Name",
+                                    "value": "{name}"
+                                },
+                                {
+                                    "title": "Location",
+                                    "value": "{location}"
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "vizTypes": {}
+}
