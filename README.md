@@ -2,7 +2,7 @@
 
 A sample Employee Management Portal based on SAP's [CAP framework](https://cap.cloud.sap/docs/about/). 
 
-This project supports *single-tenancy* (on local via *SQLite* or on cloud via *SAP HANA*) as well as *multi-tenancy* (only on Cloud in SAP HANA via [CAP's multitenancy support](https://cap.cloud.sap/docs/java/multitenancy)) in [SAP Cloud Platform](https://www.sap.com/products/business-technology-platform.html).
+This project supports *single-tenancy* (on local via *H2 Database* or on cloud via *SAP HANA*) as well as *multi-tenancy* (only on Cloud in SAP HANA via [CAP's multitenancy support](https://cap.cloud.sap/docs/java/multitenancy)) in [SAP Cloud Platform](https://www.sap.com/products/business-technology-platform.html).
 
 ![Demo](./docs/diagrams/out/demo.gif)
 
