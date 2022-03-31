@@ -67,6 +67,7 @@
                     "options": {
                         "settings" : {
                             "entitySet" : "Employee",
+                            "initialLoad": "Enabled",
                             "navigation" : {
                                 "Employee" : {
                                     "detail" : {

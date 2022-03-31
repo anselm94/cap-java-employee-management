@@ -67,6 +67,7 @@
                     "options": {
                         "settings" : {
                             "entitySet" : "Applications",
+                            "initialLoad": "Enabled",
                             "navigation" : {
                                 "Applications" : {
                                     "detail" : {
