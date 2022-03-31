@@ -3,7 +3,7 @@
     "dependencies": {
         "@sap/cds": "4.6.6",
         "@sap/cds-mtx": "1.2.1",
-        "@sap/hdi-deploy": "3.11.15",
+        "@sap/hdi-deploy": "4.3.0",
         "@sap/instance-manager": "2.2.0",
         "@sap/xssec": "3.2.13",
         "@sap/hana-client": "2.12.20",
