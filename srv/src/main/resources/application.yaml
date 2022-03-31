@@ -1,7 +1,8 @@
 ---
 spring:
-  resources:
-    static-locations: "file:./app"
+    web:
+      resources:
+        static-locations: "file:./app"
 cds:
   odata-v4:
     endpoint:
@@ -19,16 +20,35 @@ cds:
           password: john.doe
           additional:
             email: john.doe@example.com
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+
+management:
+  endpoint:
+    health:
+      show-components: always
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "health"
+  health:
+    defaults.enabled: false
+    ping.enabled: true
+    db.enabled: true
+    myhealth.enabled: true
 
 ---
 spring:
-  profiles: default
-  datasource:
-    url: "jdbc:sqlite:file::memory:?cache=shared"
-    driver-class-name: org.sqlite.JDBC
-    initialization-mode: always
-    hikari:
-      maximum-pool-size: 1
+  config:
+    activate:
+      on-profile: default
+cds:
+  data-source:
+    auto-config.enabled: false
 
 ---
 spring:

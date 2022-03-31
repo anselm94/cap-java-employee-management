@@ -17,8 +17,8 @@
 		<cds.services.version>1.23.0</cds.services.version>
 		<spring.boot.version>2.6.5</spring.boot.version>
 
-		<cdsdk.version>^1.8.5||^2</cdsdk.version>
-		<node.version>v12.16.1</node.version>
+		<cdsdk.version>^4</cdsdk.version>
+		<node.version>v12.18.1</node.version>
 		<node.url>https://nodejs.org/dist/</node.url>
 	</properties>
 
