@@ -7,7 +7,7 @@
         "description": "{{appDescription}}",
         "dataSources": {
             "ManageApplicationService": {
-                "uri": "/api/manage-application/",
+                "uri": "/odata/v4/manage-application/",
                 "type": "OData",
                 "settings": {
                     "odataVersion": "4.0"

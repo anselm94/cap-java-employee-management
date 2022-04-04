@@ -7,7 +7,7 @@
         "description": "{{appDescription}}",
         "dataSources": {
             "MyProfileService": {
-                "uri": "/api/my-profile/",
+                "uri": "/odata/v4/my-profile/",
                 "type": "OData",
                 "settings": {
                     "odataVersion": "4.0"

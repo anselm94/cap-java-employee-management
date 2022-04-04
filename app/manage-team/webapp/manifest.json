@@ -7,7 +7,7 @@
         "description": "{{appDescription}}",
         "dataSources": {
             "ManageTeamService": {
-                "uri": "/api/manage-team/",
+                "uri": "/odata/v4/manage-team/",
                 "type": "OData",
                 "settings": {
                     "odataVersion": "4.0"

@@ -35,32 +35,32 @@
 		"authenticationType": "xsuaa"
 	  },
 	  {
-		"source": "^/api/manage-team/(.*)",
+		"source": "^/odata/v4/manage-team/(.*)",
 		"authenticationType": "xsuaa",
 		"destination": "backend"
 	  },
 	  {
-		"source": "^/api/manage-employee/(.*)",
+		"source": "^/odata/v4/manage-employee/(.*)",
 		"authenticationType": "xsuaa",
 		"destination": "backend"
 	  },
 	  {
-		"source": "^/api/manage-entity/(.*)",
+		"source": "^/odata/v4/manage-entity/(.*)",
 		"authenticationType": "xsuaa",
 		"destination": "backend"
 	  },
 	  {
-		"source": "^/api/manage-application/(.*)",
+		"source": "^/odata/v4/manage-application/(.*)",
 		"authenticationType": "xsuaa",
 		"destination": "backend"
 	  },
 	  {
-		"source": "^/api/my-profile/(.*)",
+		"source": "^/odata/v4/my-profile/(.*)",
 		"authenticationType": "xsuaa",
 		"destination": "backend"
 	  },
 	  {
-		"source": "^/api/(.*)$",
+		"source": "^/odata/v4/(.*)$",
 		"authenticationType": "none",
 		"destination": "backend"
 	  },

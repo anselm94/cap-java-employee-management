@@ -291,7 +291,7 @@
             "vizConfig": {
                 "sap.flp": {
                     "indicatorDataSource": {
-                        "path": "/api/manage-team/Teams?$count=true&$top=0",
+                        "path": "/odata/v4/manage-team/Teams?$count=true&$top=0",
                         "refresh": 10
                     },
                     "target": {
@@ -371,7 +371,7 @@
                     "content": {
                         "data": {
                             "request": {
-                                "url": "/api/manage-team/Teams?$count=true"
+                                "url": "/odata/v4/manage-team/Teams?$count=true"
                             },
                             "path": "/value"
                         },
@@ -453,7 +453,7 @@
                         },
                         "data": {
                             "request": {
-                                "url": "/api/manage-team/Teams?$count=true"
+                                "url": "/odata/v4/manage-team/Teams?$count=true"
                             },
                             "path": "/value"
                         },
