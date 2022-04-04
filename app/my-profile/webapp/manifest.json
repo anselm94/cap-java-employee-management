@@ -49,39 +49,17 @@
         "routing": {
             "routes": [
                 {
-                    "pattern": ":?query:",
-                    "name": "EmployeesList",
-                    "target": "EmployeesList"
-                },
-                {
                     "pattern": "Employee({key}):?query:",
                     "name": "EmployeeDetails",
                     "target": "EmployeeDetails"
                 }
             ],
             "targets": {
-                "EmployeesList": {
-                    "type": "Component",
-                    "id": "EmployeesList",
-                    "name": "sap.fe.templates.ListReport",
-                    "options": {
-                        "settings" : {
-                            "entitySet" : "Employee",
-                            "initialLoad": "Enabled",
-                            "navigation" : {
-                                "Employee" : {
-                                    "detail" : {
-                                        "route" : "EmployeeDetails"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
                 "EmployeeDetails": {
                     "type": "Component",
                     "id": "EmployeeDetails",
                     "name": "sap.fe.templates.ObjectPage",
+                    "viewLevel": 1,
                     "options": {
                         "settings" : {
                             "entitySet" : "Employee"
