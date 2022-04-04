@@ -35,6 +35,11 @@
 		"authenticationType": "xsuaa"
 	  },
 	  {
+		"source": "^/overview-employment/webapp/(.*)$",
+		"localDir": "./",
+		"authenticationType": "xsuaa"
+	  },
+	  {
 		"source": "^/odata/v4/manage-team/(.*)",
 		"authenticationType": "xsuaa",
 		"destination": "backend"
@@ -56,6 +61,11 @@
 	  },
 	  {
 		"source": "^/odata/v4/my-profile/(.*)",
+		"authenticationType": "xsuaa",
+		"destination": "backend"
+	  },
+	  {
+		"source": "^/odata/v4/overview/(.*)",
 		"authenticationType": "xsuaa",
 		"destination": "backend"
 	  },

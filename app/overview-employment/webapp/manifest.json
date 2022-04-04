@@ -1,0 +1,106 @@
+{
+    "_version": "1.8.0",
+    "sap.app": {
+        "id": "overview",
+        "type": "application",
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "dataSources": {
+            "OverviewService": {
+                "uri": "/odata/v4/overview/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "4.0"
+                }
+            }
+        },
+        "-sourceTemplate": {
+            "id": "ui5template.basicSAPUI5ApplicationProject",
+            "-id": "ui5template.smartTemplate",
+            "-version": "1.40.12"
+        }
+    },
+    "sap.ui5": {
+        "dependencies": {
+            "libs": {
+                "sap.ovp": {
+                    "minVersion": "1.32.0"
+                },
+                "sap.fe.templates": {}
+            }
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "overview": {
+                "dataSource": "OverviewService",
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true,
+                    "groupProperties": {
+                        "default": {
+                            "submit": "Auto"
+                        }
+                    }
+                }
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "fullWidth": true
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "transactional"
+    },
+    "sap.ovp": {
+        "globalFilterModel": "overview",
+        "globalFilterEntityType": "Parameters",
+        "containerLayout": "resizable",
+        "showBasicSearch": false,
+        "enableLiveFilter": false,
+        "considerAnalyticalParameters": false,
+        "cards": {
+            "cd1-team-budget": {
+                "model": "overview",
+                "template": "sap.ovp.cards.v4.charts.analytical",
+                "settings": {
+                    "title": "Team Budget",
+                    "entitySet": "Teams",
+                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#BudgetOverview",
+                    "idenfiticationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#NavToTeamsApp",
+                    "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#Presentation",
+                    "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#DP",
+                    "defaultSpan": {
+                        "rows": 1,
+                        "cols": 2
+                    }
+                }
+            },
+            "cds2-employee-yoe": {
+                "model": "overview",
+                "template": "sap.ovp.cards.v4.charts.analytical",
+                "settings": {
+                    "title": "Employee's Experience",
+                    "entitySet": "Employees",
+                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#YearsOfExperience",
+                    "idenfiticationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#NavToEmployeesApp",
+                    "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#Presentation",
+                    "defaultSpan": {
+                        "rows": 1,
+                        "cols": 2
+                    }
+                }
+            }
+        }
+    }
+}

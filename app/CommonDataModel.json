@@ -39,6 +39,7 @@
             },
             "payload": {
                 "viz": [
+                    "overview",
                     "team",
                     "employee",
                     "application",
@@ -48,6 +49,51 @@
         }
     },
     "applications": {
+        "overview": {
+            "sap.app": {
+                "id": "overview",
+                "title": "Employment Overview",
+                "subTitle": "Overview of employment management",
+                "ach": "",
+                "applicationVersion": {
+                    "version": "1.0.0"
+                },
+                "crossNavigation": {
+                    "inbounds": {
+                        "target": {
+                            "semanticObject": "employment",
+                            "action": "overview",
+                            "signature": {
+                                "parameters": {},
+                                "additionalParameters": "allowed"
+                            }
+                        }
+                    }
+                }
+            },
+            "sap.flp": {
+                "type": "application"
+            },
+            "sap.ui": {
+                "technology": "UI5",
+                "icons": {
+                    "icon": "sap-icon://customer-view"
+                },
+                "deviceTypes": {
+                    "desktop": true,
+                    "tablet": true,
+                    "phone": true
+                }
+            },
+            "sap.ui5": {
+                "componentName": "overview"
+            },
+            "sap.platform.runtime": {
+                "componentProperties": {
+                    "url": "/overview-employment/webapp"
+                }
+            }
+        },
         "team": {
             "sap.app": {
                 "id": "team",
@@ -239,6 +285,11 @@
             "payload": {
                 "tiles": [
                     {
+                        "id": "overview",
+                        "appId": "overview",
+                        "vizId": "overview"
+                    },
+                    {
                         "id": "team-card",
                         "vizId": "TeamCard"
                     },
@@ -285,6 +336,18 @@
     },
     "systemAliases": {},
     "visualizations": {
+        "overview": {
+            "vizType": "sap.ushell.StaticAppLauncher",
+            "businessApp": "overview",
+            "vizConfig": {
+                "sap.flp": {
+                    "target": {
+                        "appId": "overview",
+                        "inboundId": "target"
+                    }
+                }
+            }
+        },
         "team": {
             "vizType": "sap.ushell.DynamicAppLauncher",
             "businessApp": "team",

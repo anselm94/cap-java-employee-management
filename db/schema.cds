@@ -11,6 +11,7 @@ entity Teams : cuid, managed {
   descr    : String;
   location : String;
   budget   : Integer;
+  budgetUoM: String;
   members  : Composition of many Members
                on members.team = $self;
 }
@@ -28,6 +29,8 @@ entity Employees : cuid, managed {
   dob               : Date;
   email             : String(111);
   yearsOfExperience : Integer;
+  salary            : Integer;
+  salaryUoM         : String;
   membership        : Association to one Members
                         on membership.employee = $self;
   skills            : Composition of many Skills

@@ -27,7 +27,14 @@ annotate schema.Teams with @(
 	name @title:'{i18n>Name}';
 	descr @UI.MultiLineText;
 	location @title:'{i18n>Location}';
-	budget @title : '{i18n>Budget}'
+
+	@Analytics.Measure
+    @Measures.Unit       : budgetUoM
+    @Aggregation.default : #SUM
+	budget @title : '{i18n>Budget}';
+
+	@Common.IsUnit
+	budgetUoM @title : '{i18n>BudgetUoM}'
 };
 
 annotate schema.Members with {
@@ -51,8 +58,21 @@ annotate schema.Employees with @(
 	ID @title:'{i18n>ID}' @UI.HiddenFilter;
 	name @title:'{i18n>Name}';
 	dob @title:'{i18n>DOB}';
+
+	@Analytics.Measure
+	@Measures.Unit       : salaryUoM
+	@Aggregation.default : #MAX
+	salary @title:'{i18n>Salary}';
+
+	@Common.IsUnit
+	salaryUoM @title:'{i18n>SalaryUoM}';
+
 	email @title:'{i18n>Email}';
+
+	@Analytics.Measure
+    @Aggregation.default : #MAX
 	yearsOfExperience @title : '{i18n>YearsOfExperience}';
+
 	skills @ValueList.entity:'Skills';
 };
 
