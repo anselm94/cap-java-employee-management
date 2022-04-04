@@ -433,13 +433,13 @@
                 "sap.card": {
                     "type": "Analytical",
                     "header": {
-                        "title": "January"
+                        "title": "Team Budget"
                     },
                     "content": {
                         "chartType": "donut",
                         "chartProperties": {
                             "legend": {
-                                "visible": false
+                                "visible": true
                             },
                             "plotArea": {
                                 "dataLabel": {
