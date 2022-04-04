@@ -33,6 +33,7 @@ annotate ManageEmployeeService.Employees with @(
 			Data: [
 				{Value: dob},
 				{Value: email},
+				{Value: yearsOfExperience},
 			]
 		},
 		FieldGroup#Created: {

@@ -31,6 +31,7 @@ annotate ManageTeamService.Teams with @(
 			Data: [
 				{Value: descr},
 				{Value: location},
+				{Value: budget},
 			]
 		},
 		FieldGroup#Created: {

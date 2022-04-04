@@ -239,8 +239,12 @@
             "payload": {
                 "tiles": [
                     {
-                        "id": "card4",
+                        "id": "team-card",
                         "vizId": "TeamCard"
+                    },
+                    {
+                        "id": "team-budget-card",
+                        "vizId": "TeamBudgetCard"
                     }
                 ],
                 "links": []
@@ -346,7 +350,7 @@
                 "sap.flp": {
                     "tileSize": "1x2",
                     "columns": "4",
-                    "rows": "5"
+                    "rows": "4"
                 },
                 "sap.app": {
                     "id": "TeamCard",
@@ -383,6 +387,104 @@
                                 }
                             ]
                         }
+                    }
+                }
+            }
+        },
+        "TeamBudgetCard": {
+            "vizType": "sap.ushell.Card",
+            "businessApp": "team",
+            "target": {
+                "appId": "team",
+                "inboundId": "manage-team",
+                "parameters": {}
+            },
+            "vizConfig": {
+                "_version": "1.14.0",
+                "sap.app": {
+                    "id": "card.explorer.donut.card",
+                    "type": "card",
+                    "title": "Sample of a Donut Chart",
+                    "subTitle": "Sample of a Donut Chart",
+                    "applicationVersion": {
+                        "version": "1.0.0"
+                    },
+                    "shortTitle": "A short title for this Card",
+                    "info": "Additional information about this Card",
+                    "description": "A long description for this Card",
+                    "tags": {
+                        "keywords": [
+                            "Analytical",
+                            "Sample"
+                        ]
+                    }
+                },
+                "sap.flp": {
+                    "tileSize": "1x2",
+                    "columns": "4",
+                    "rows": "4"
+                },
+                "sap.ui": {
+                    "technology": "UI5",
+                    "icons": {
+                        "icon": "sap-icon://donut-chart"
+                    }
+                },
+                "sap.card": {
+                    "type": "Analytical",
+                    "header": {
+                        "title": "January"
+                    },
+                    "content": {
+                        "chartType": "donut",
+                        "chartProperties": {
+                            "legend": {
+                                "visible": false
+                            },
+                            "plotArea": {
+                                "dataLabel": {
+                                    "visible": true,
+                                    "showTotal": true
+                                }
+                            },
+                            "title": {
+                                "visible": false
+                            }
+                        },
+                        "data": {
+                            "request": {
+                                "url": "/api/manage-team/Teams?$count=true"
+                            },
+                            "path": "/value"
+                        },
+                        "dimensions": [
+                            {
+                                "name": "Team Name",
+                                "value": "{name}"
+                            }
+                        ],
+                        "measures": [
+                            {
+                                "name": "Budget",
+                                "value": "{budget}"
+                            }
+                        ],
+                        "feeds": [
+                            {
+                                "type": "Dimension",
+                                "uid": "color",
+                                "values": [
+                                    "Team Name"
+                                ]
+                            },
+                            {
+                                "type": "Measure",
+                                "uid": "size",
+                                "values": [
+                                    "Budget"
+                                ]
+                            }
+                        ]
                     }
                 }
             }

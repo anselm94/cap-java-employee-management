@@ -26,7 +26,8 @@ annotate schema.Teams with @(
 	members @ValueList.entity:'Employees';
 	name @title:'{i18n>Name}';
 	descr @UI.MultiLineText;
-	location @title:'{i18n>Location}'
+	location @title:'{i18n>Location}';
+	budget @title : '{i18n>Budget}'
 };
 
 annotate schema.Members with {
@@ -51,6 +52,7 @@ annotate schema.Employees with @(
 	name @title:'{i18n>Name}';
 	dob @title:'{i18n>DOB}';
 	email @title:'{i18n>Email}';
+	yearsOfExperience @title : '{i18n>YearsOfExperience}';
 	skills @ValueList.entity:'Skills';
 };
 
