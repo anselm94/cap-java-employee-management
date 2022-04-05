@@ -90,7 +90,7 @@
                 "model": "overview",
                 "template": "sap.ovp.cards.v4.charts.analytical",
                 "settings": {
-                    "title": "Employee's Experience",
+                    "title": "Employees' Experience",
                     "entitySet": "Employees",
                     "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#YearsOfExperience",
                     "idenfiticationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#NavToEmployeesApp",
@@ -99,6 +99,32 @@
                         "rows": 1,
                         "cols": 2
                     }
+                }
+            },
+            "cds3-employee-overview": {
+                "model": "overview",
+                "template": "sap.ovp.cards.v4.linklist",
+                "settings": {
+                    "title": "Employees",
+                    "entitySet": "Employees",
+                    "listFlavor": "carousel",
+                    "sortBy": "yearsOfExperience",
+                    "sortOrder": "descending",
+                    "headerAnnotationPath": "com.sap.vocabularies.UI.v1.HeaderInfo"
+                }
+            },
+            "cds4-application-approval": {
+                "model": "overview",
+                "template": "sap.ovp.cards.v4.list",
+                "settings": {
+                    "title": "Teams",
+                    "subTitle": "List of Teams",
+                    "entitySet": "Teams",
+                    "listFlavor": "bar",
+                    "category": "Category",
+                    "sortBy": "budget",
+                    "sortOrder": "descending",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.LineItem#List"
                 }
             }
         }

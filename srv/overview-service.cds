@@ -15,7 +15,9 @@ service OverviewService @(requires : 'authenticated-user') {
     @cds.redirection.target
     entity Employees as projection on schema.Employees;
 
-    entity Skill as projection on schema.Skills;
+    entity Applications as projection on schema.Applications;
+
+    entity Skills as projection on schema.Skills;
 
     entity Profile as select from MyProfileService.Profile {
         name,
@@ -24,6 +26,7 @@ service OverviewService @(requires : 'authenticated-user') {
         salary,
         salaryUoM,
         yearsOfExperience,
+        imgUrl,
         membership.position as position,
         membership.team.name as teamName,
         membership.team.location as teamLocation

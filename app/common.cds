@@ -79,6 +79,7 @@ annotate schema.Employees with @(UI : { // Value Help
 
     @Analytics.Measure
     @Aggregation.default :                #MAX
+    @Common : { Text : 'Years', TextArrangement : #TextLast}
     yearsOfExperience @title            : '{i18n>YearsOfExperience}';
 
     skills            @ValueList.entity : 'Skills';
