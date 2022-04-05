@@ -7,7 +7,7 @@ using ManageEmployeeService from '../../srv/manage-employee-service';
 annotate ManageEmployeeService.Employees with @(
 	UI: {
 		LineItem: [
-			{Value: ID, Label:'{i18n>ID}'},
+			{Value: imgUrl},
 			{Value: name, Label:'{i18n>Name}'},
 			{Value: dob, Label:'{i18n>DOB}'},
 			{Value: email, Label:'{i18n>Email}'},
@@ -18,7 +18,8 @@ annotate ManageEmployeeService.Employees with @(
 				Label: '{i18n>Employee}',
 				Value: name
 			},
-			Description: {Value: email}
+			Description: {Value: email},
+			ImageUrl: imgUrl
 		},
 		HeaderFacets: [
 			{$Type: 'UI.ReferenceFacet', Label: '{i18n>Created}', Target: '@UI.FieldGroup#Created'},

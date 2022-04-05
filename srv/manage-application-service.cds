@@ -16,7 +16,7 @@ service ManageApplicationService @(requires: 'authenticated-user') {
   @readonly entity Employees as projection on schema.Employees;
 
   entity Applications as projection on schema.Applications actions {
-    action takeAction(accepted: Boolean, position: String);
+    action takeAction(accepted: Boolean, position: String) returns Applications;
   };
 }
 

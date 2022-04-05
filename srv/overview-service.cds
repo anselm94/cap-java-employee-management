@@ -1,3 +1,4 @@
+using { MyProfileService } from './my-profile-service';
 using {com.sample as schema} from '../db/schema';
 using { cuid } from '@sap/cds/common';
 
@@ -11,9 +12,22 @@ service OverviewService @(requires : 'authenticated-user') {
 
     entity Members   as projection on schema.Members;
 
+    @cds.redirection.target
     entity Employees as projection on schema.Employees;
 
     entity Skill as projection on schema.Skills;
+
+    entity Profile as select from MyProfileService.Profile {
+        name,
+        dob,
+        email,
+        salary,
+        salaryUoM,
+        yearsOfExperience,
+        membership.position as position,
+        membership.team.name as teamName,
+        membership.team.location as teamLocation
+    };
 
     entity Parameters : cuid {}
 }

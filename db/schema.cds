@@ -7,13 +7,13 @@ using {
 
 // A 'Team' has multiple employees assigned as members
 entity Teams : cuid, managed {
-  name     : String(111);
-  descr    : String;
-  location : String;
-  budget   : Integer;
-  budgetUoM: String;
-  members  : Composition of many Members
-               on members.team = $self;
+  name      : String(111);
+  descr     : String;
+  location  : String;
+  budget    : Integer;
+  budgetUoM : String;
+  members   : Composition of many Members
+                on members.team = $self;
 }
 
 // A 'Member' is an employee assigned to a team and has a position
@@ -31,6 +31,7 @@ entity Employees : cuid, managed {
   yearsOfExperience : Integer;
   salary            : Integer;
   salaryUoM         : String;
+  imgUrl            : String;
   membership        : Association to one Members
                         on membership.employee = $self;
   skills            : Composition of many Skills
@@ -51,8 +52,9 @@ type Status : String enum {
 
 // 'Applications' are created by unassigned employees while applying for teams
 entity Applications : cuid, managed {
-  applicant : Association to one Employees;
-  team      : Association to one Teams;
-  status    : Status default 'In Process';
-  resume    : String;
+  applicant   : Association to one Employees;
+  team        : Association to one Teams;
+  status      : Status default 'In Process';
+  criticality : Integer default 5;
+  resume      : String;
 }

@@ -12,19 +12,20 @@ annotate MyProfileService.Employee with @(
 				Label: '{i18n>Name}',
 				Value: name
 			},
-			Description: {Value: email}
+			Description: {Value: email},
+			ImageUrl: imgUrl
 		},
-		HeaderFacets: [
-			{$Type: 'UI.ReferenceFacet', Label: '{i18n>Modified}', Target: '@UI.FieldGroup#Modified'},
-		],
 		Facets: [
 			{$Type: 'UI.ReferenceFacet', Label: '{i18n>Team}', Target: '@UI.Identification'},
 			{$Type: 'UI.ReferenceFacet', Label: '{i18n>Description}', Target: '@UI.FieldGroup#Descr'},
+			{$Type: 'UI.ReferenceFacet', Label: '{i18n>Modified}', Target: '@UI.FieldGroup#Modified'},
 			{$Type: 'UI.ReferenceFacet', Label: '{i18n>Skills}', Target: 'skills/@UI.LineItem'},
 		],
 		FieldGroup#Descr: {
 			Data: [
 				{Value: dob},
+				{Value: salary},
+				{Value: yearsOfExperience},
 			]
 		},
 		FieldGroup#Modified: {

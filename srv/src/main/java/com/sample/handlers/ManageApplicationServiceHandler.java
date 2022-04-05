@@ -107,13 +107,18 @@ public class ManageApplicationServiceHandler implements EventHandler {
 			db.run(Insert.into(MEMBERS).entry(newMembership));
 
 			activeApplication.setStatus(Status.ACCEPTED.toString());
+			activeApplication.setCriticality(3);
 			db.run(Update.entity(APPLICATIONS).data(activeApplication));
 			messages.success(String.format("Application (%s) is marked accepted", activeApplication.getApplicantId()));
 		} else {
 			activeApplication.setStatus(Status.REJECTED.toString());
+			activeApplication.setCriticality(1);
 			db.run(Update.entity(APPLICATIONS).data(activeApplication));
 			messages.success(String.format("Application (%s) is marked rejected", activeApplication.getApplicantId()));
 		}
+
+		context.setResult(createApplicationFrom(activeApplication));
+
 		context.setCompleted();
 	}
 
@@ -186,5 +191,18 @@ public class ManageApplicationServiceHandler implements EventHandler {
 
 	private Supplier<ServiceException> notFound(String message) {
 		return () -> new ServiceException(ErrorStatuses.NOT_FOUND, message);
+	}
+
+	private cds.gen.manageapplicationservice.Applications createApplicationFrom(Applications sourceApplication) {
+		cds.gen.manageapplicationservice.Applications targetApplication = cds.gen.manageapplicationservice.Applications.create();
+		targetApplication.setTeamId(sourceApplication.getTeamId());
+		targetApplication.setApplicantId(sourceApplication.getApplicantId());
+		targetApplication.setCriticality(sourceApplication.getCriticality());
+		targetApplication.setStatus(sourceApplication.getStatus());
+		targetApplication.setId(sourceApplication.getId());
+		targetApplication.setIsActiveEntity(true);
+		targetApplication.setHasActiveEntity(false);
+		targetApplication.setHasDraftEntity(false);
+		return targetApplication;
 	}
 }
