@@ -9,7 +9,8 @@
             "name": "Debug (Launch)-Application<employee-management>",
             "request": "launch",
             "mainClass": "com.sample.Application",
-            "projectName": "employee-management"
+            "projectName": "employee-management",
+            "preLaunchTask": "CDS Build"
         },
         {
             "address": "127.0.0.1",
