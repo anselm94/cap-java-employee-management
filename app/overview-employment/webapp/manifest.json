@@ -124,7 +124,25 @@
                     "category": "Category",
                     "sortBy": "budget",
                     "sortOrder": "descending",
-                    "annotationPath": "com.sap.vocabularies.UI.v1.LineItem#List"
+                    "annotationPath": "com.sap.vocabularies.UI.v1.LineItem#List",
+                    "defaultSpan": {
+                        "rows": 4,
+                        "cols": 2
+                    }
+                }
+            },
+            "cds5-custom-map": {
+                "model": "overview",
+                "template": "overview.card.map",
+                "settings": {
+                    "title": "Team Location",
+                    "subTitle": "Location of international teams",
+                    "entitySet": "Teams",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.LineItem#List",
+                    "defaultSpan": {
+                        "rows": 12,
+                        "cols": 2
+                    }
                 }
             }
         }

@@ -12,6 +12,8 @@ entity Teams : cuid, managed {
   location  : String;
   budget    : Integer;
   budgetUoM : String;
+  longitude : String;
+  latitude  : String;
   members   : Composition of many Members
                 on members.team = $self;
 }

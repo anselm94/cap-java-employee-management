@@ -29,6 +29,8 @@ annotate schema.Teams with @(UI : { // Value Help
     name      @title            : '{i18n>Name}';
     descr     @UI.MultiLineText;
     location  @title            : '{i18n>Location}';
+    latitude   @title            : '{i18n>Latitude}';
+    longitude   @title            : '{i18n>Longitude}';
 
     @Analytics.Measure
     @Measures.Unit       :        budgetUoM
@@ -69,7 +71,10 @@ annotate schema.Employees with @(UI : { // Value Help
     @Analytics.Measure
     @Measures.Unit       :                salaryUoM
     @Aggregation.default :                #MAX
-    @Common : { Text : salaryUoM, TextArrangement : #TextLast}
+    @Common              :                {
+        Text            : salaryUoM,
+        TextArrangement : #TextLast
+    }
     salary            @title            : '{i18n>Salary}';
 
     @Common.IsUnit
@@ -79,7 +84,10 @@ annotate schema.Employees with @(UI : { // Value Help
 
     @Analytics.Measure
     @Aggregation.default :                #MAX
-    @Common : { Text : 'Years', TextArrangement : #TextLast}
+    @Common              :                {
+        Text            : 'Years',
+        TextArrangement : #TextLast
+    }
     yearsOfExperience @title            : '{i18n>YearsOfExperience}';
 
     skills            @ValueList.entity : 'Skills';

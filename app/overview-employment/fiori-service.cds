@@ -79,8 +79,7 @@ annotate OverviewService.Employees with @(
                 Label : '{i18n>YearsOfExperience}',
                 Value : yearsOfExperience
             },
-            ImageUrl       : imgUrl,
-            TypeImageUrl   : imgUrl
+            ImageUrl       : imgUrl
         },
         Chart #YearsOfExperience          : {
             Title               : '{i18n>Employees}',

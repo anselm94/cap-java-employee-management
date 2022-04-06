@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:ovp="sap.ovp.ui" xmlns:vbm="sap.ui.vbm" xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1">
+    <VBox class="cardType" height="100%">
+        <!-- <List height="100%" items="{parts:[{path:'entitySet>'}, {path:'ovpCardProperties>/annotationPath'}], formatter: 'sap.ovp.cards.v4.V4AnnotationHelper.formatItems'}">
+            <template:with path='ovpCardProperties>/annotationPath' helper="sap.ovp.cards.v4.V4AnnotationHelper.resolveEntityTypePath" var='lineItem'>
+                <StandardListItem class="sapOvpStandardListItem" title="{parts:[{path:'lineItem>'}, {path:'ovpConstants>/firstDataFieldIndex'}], formatter: 'sap.ovp.cards.v4.V4AnnotationHelper.formatDataFieldValueOnIndex'}" />
+            </template:with>
+        </List> -->
+        <vbm:AnalyticMap enableAnimation="true" initialPosition="0;10;0">
+            <vbm:vos>
+                <vbm:Spots items="{overview>/Teams}">
+                    <vbm:Spot text="{overview>name}" position="{:= ${overview>longitude} + ';' + ${overview>latitude} + ';0' }" />
+                </vbm:Spots>
+            </vbm:vos>
+        </vbm:AnalyticMap>
+    </VBox>
+</core:FragmentDefinition>
