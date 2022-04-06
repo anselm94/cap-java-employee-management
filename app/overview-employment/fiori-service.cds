@@ -76,8 +76,7 @@ annotate OverviewService.Employees with @(
             },
             Description    : {
                 $Type : 'UI.DataField',
-                Label : '{i18n>YearsOfExperience}',
-                Value : yearsOfExperience
+                Value : membership.position
             },
             ImageUrl       : imgUrl
         },
