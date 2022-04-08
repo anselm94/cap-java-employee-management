@@ -36,6 +36,7 @@
             },
             "overview": {
                 "dataSource": "OverviewService",
+                "preload": true,
                 "settings": {
                     "synchronizationMode": "None",
                     "operationMode": "Server",
@@ -143,6 +144,48 @@
                         "rows": 12,
                         "cols": 2
                     }
+                }
+            },
+            "cds6-quick-links": {
+                "model": "overview",
+                "template": "sap.ovp.cards.v4.linklist",
+                "settings": {
+                    "title": "Quick Links",
+                    "listFlavor": "standard",
+                    "defaultSpan": {
+                        "rows": 16,
+                        "cols": 1
+                    },
+                    "staticContent": [
+                        {
+                            "title": "Manage Teams",
+                            "imageUri": "sap-icon://collaborate",
+                            "imageAltText": "teams",
+                            "semanticObject": "manage",
+                            "action": "teams"
+                        },
+                        {
+                            "title": "Manage Employees",
+                            "imageUri": "sap-icon://employee",
+                            "imageAltText": "employees",
+                            "semanticObject": "manage",
+                            "action": "employees"
+                        },
+                        {
+                            "title": "Manage Job Applications",
+                            "imageUri": "sap-icon://work-history",
+                            "imageAltText": "applications",
+                            "semanticObject": "manage",
+                            "action": "applications"
+                        },
+                        {
+                            "title": "My Profile",
+                            "imageUri": "sap-icon://business-card",
+                            "imageAltText": "profile",
+                            "semanticObject": "my",
+                            "action": "profile"
+                        }
+                    ]
                 }
             }
         }
